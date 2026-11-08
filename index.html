@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%234ab77c%22/%3E%3Cg%20transform%3D%22translate%28-104.5%2C-26.5%29%20scale%281.05%29%22%3E%3Cpolygon%20fill%3D%22%23ffffff%22%20points%3D%22144.12%2046.81%20144.59%2064.33%20149.5%2063.76%20148.39%2058.02%20153.34%2065.63%20158.62%2061.98%20148.99%2052.71%20154.46%2049.4%20150.9%2042.24%20144.12%2046.81%22%3E%3Cpolygon%20fill%3D%22%23ffffff%22%20points%3D%22128.22%2050.68%20120.29%2045.77%20130.01%2036.67%20137.23%2039.65%20143.62%2064.46%20135.15%2071.36%20127.62%2069.01%20123.38%2061.01%20127.93%2057.09%20133.11%2061.79%20135.93%2060.23%20131.74%2045.77%20128.22%2050.68%22%3E%3Ccircle%20fill%3D%22%23ffffff%22%20cx%3D%22162.02%22%20cy%3D%2259.53%22%20r%3D%222.96%22%3E%3C/g%3E%3C/svg%3E">
 <title>Yabi Junior — money lessons that end in a real savings account</title>
-<meta name="description" content="A 14 lesson financial literacy programme for grades 7 to 9 in Egyptian international schools. Students learn how money works, set a savings goal, then fund it in a real account.">
+<meta name="description" content="A 16 lesson, 7 module financial literacy programme for grades 7 to 9 in Egyptian international schools. Students learn how money works, set a savings goal, then fund it in a real account.">
 
 <!-- Fallback webfonts. The four real brand faces are declared in @font-face below. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -229,7 +229,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 .step--p{background:#645493;width:100%}
 .step--p .step__when{background:#7560a9}
 .step__when{
-  font-family:var(--f-body);font-size:18px;font-weight:500;color:#fff;letter-spacing:0;
+  font-family:var(--f-hand);font-size:clamp(2rem,3.6vw,2.9rem);font-weight:400;line-height:1.05;color:#fff;letter-spacing:0;white-space:nowrap;
   padding:22px 18px;display:flex;align-items:center;justify-content:center;text-align:center;
 }
 .step__body{padding:22px 30px;color:#fff;display:flex;flex-direction:column;justify-content:center}
@@ -251,7 +251,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
    keep their relationship to the words at every viewport. None of them move. */
 .deco{position:absolute;pointer-events:none}
 .prog h2 .anchor{position:relative;display:inline-block}
-.deco--star{width:1.3em;aspect-ratio:121/124;left:calc(100% - .5em);top:-.3em}
+.deco--star{width:1.3em;aspect-ratio:121/124;left:calc(100% - .05em);top:-.45em}
 .deco--heart{width:1.05em;aspect-ratio:106/102.5;right:100%;margin-right:.14em;top:.04em;
   z-index:4;transform:rotate(-9deg);overflow:visible}
 /* Three hand-set lines with a cascading indent, measured off the reference
@@ -288,6 +288,10 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 .module__n{font-family:var(--f-hand);font-size:14px;color:#7059a4}
 .prog__note{margin-top:34px;max-width:41em;font-size:var(--copy);font-weight:var(--copy-w);
   line-height:1.35;color:var(--purple)}
+
+.term__t{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(1.05rem,1.9vw,1.3rem);
+  letter-spacing:var(--ls-display);color:var(--purple);line-height:1.2}
+.term__f{margin:12px 0 0;max-width:46em;font-size:17px;line-height:1.45;color:var(--purple)}
 
 /* ============================================================
    WHAT IT TAKES
@@ -510,7 +514,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
         <div>
           <p class="hero__eyebrow rise">For international schools in Egypt</p>
           <h1 class="rise" data-d="1">Money lessons that end in a real savings account</h1>
-          <p class="hero__lede rise" data-d="2">Yabi Junior is a 14 lesson financial literacy programme for grades 7 to 9. Students learn how money works, set a savings goal that matters to them, then fund it in a real account.</p>
+          <p class="hero__lede rise" data-d="2">Yabi Junior is a 16 lesson financial literacy programme for grades 7 to 9, built around seven modules and a final money plan. Students learn how money works, set a savings goal that matters to them, then fund it in a real account.</p>
           <div class="hero__actions rise" data-d="3">
             <a class="btn btn--green" href="#talk"><svg class="ic" aria-hidden="true"><use href="#ic-phone"/></svg> Request a call</a>
             <a class="btn btn--ghost" href="#programme">See modules</a>
@@ -521,7 +525,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 
       <div class="stats">
         <div class="stat pop" data-d="1">
-          <span class="stat__num"><svg class="ic" aria-hidden="true"><use href="#ic-n1"/></svg><svg class="ic" aria-hidden="true"><use href="#ic-n4"/></svg></span>
+          <span class="stat__num"><svg class="ic" aria-hidden="true"><use href="#ic-n1"/></svg><svg class="ic" aria-hidden="true"><use href="#ic-n6"/></svg></span>
           <span class="stat__lab">Lessons</span>
         </div>
         <div class="stat pop" data-d="2">
@@ -545,27 +549,27 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
       <p class="how__kicker rise" data-d="1">Learn it, choose a goal, put money in.</p>
       <p class="how__sub rise" data-d="2">Most financial literacy stops at the worksheet. This one carries through to a student&rsquo;s own account, which is where the habit actually forms.</p>
 
-      <p class="how__module rise" data-d="3">Lessons</p>
+      <p class="how__module rise" data-d="3">Modules</p>
 
       <div class="step step--g slide" data-d="3">
-        <div class="step__when">1 to 5</div>
+        <div class="step__when">0&ndash;3</div>
         <div class="step__body">
           <h3 class="step__t">They learn how money behaves</h3>
-          <p class="step__x">Where money comes from, how behaviour drives spending, how to read your own position, and how to plan, budget and save.</p>
+          <p class="step__x">Why money skills matter, how people earn, how needs, wants and habits drive spending, and how to build a budget and track it.</p>
         </div>
       </div>
       <div class="step step--r slide" data-d="4">
-        <div class="step__when">6 onward</div>
+        <div class="step__when">4</div>
         <div class="step__body">
           <h3 class="step__t">They pick a goal worth saving for</h3>
-          <p class="step__x">Each student names something they want, prices it, and works out how long it takes at a pace they can hold.</p>
+          <p class="step__x">Each student sets a savings goal, prices it, and sees how money can grow through investment and shrink through inflation.</p>
         </div>
       </div>
       <div class="step step--p slide" data-d="5">
-        <div class="step__when">9 onward</div>
+        <div class="step__when">5&ndash;6</div>
         <div class="step__body">
           <h3 class="step__t">They fund it in a real account</h3>
-          <p class="step__x">Deposits go into an account opened with our banking partner, with parent consent. The goal fills up in front of them.</p>
+          <p class="step__x">They learn how banks, borrowing and investing work, then deposit into an account opened with our banking partner, with parent consent. The goal fills up in front of them.</p>
         </div>
       </div>
     </div>
@@ -577,49 +581,91 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
       <div class="prog__head">
         <div class="rise"><span class="tag" role="img" aria-label="The programme"><svg aria-hidden="true"><use href="#sh-tagfull"/></svg></span></div>
         <h2 class="rise" data-d="1">
-          <span class="ln ln1">Fourteen lessons,<svg class="deco deco--star" aria-hidden="true"><use href="#sh-star"/></svg></span>
-          <span class="ln ln2"><span class="anchor">six modules,<svg class="deco deco--heart" aria-hidden="true"><use href="#sh-heart"/></svg></span></span>
-          <span class="ln ln3">three terms<svg class="deco--bang" aria-hidden="true"><use href="#sh-bang"/></svg></span>
+          <span class="ln ln1">Sixteen lessons,<svg class="deco deco--star" aria-hidden="true"><use href="#sh-star"/></svg></span>
+          <span class="ln ln2"><span class="anchor">seven modules,<svg class="deco deco--heart" aria-hidden="true"><use href="#sh-heart"/></svg></span></span>
+          <span class="ln ln3">one money plan<svg class="deco--bang" aria-hidden="true"><use href="#sh-bang"/></svg></span>
         </h2>
         <p class="prog__sub rise" data-d="2">Framework agnostic, so it sits alongside IB, British and American curricula without a rewrite. Delivered in English.</p>
       </div>
 
+      <!-- Modules and lesson titles follow the Yabi Junior syllabus (7 modules, 16 lessons). -->
       <div class="term rise" data-d="2">
         <div class="term__rule">
-          <span class="term__n">term 1</span><span class="term__dash"></span><span class="term__r">Lessons 1 to 3</span>
+          <span class="term__n">module 0</span><h3 class="term__t">Programme Introduction</h3><span class="term__dash"></span><span class="term__r">1 lesson</span>
         </div>
         <ul class="modules">
-          <li class="module"><span class="module__n">01</span> Money Choices</li>
-          <li class="module"><span class="module__n">02</span> Earning Money</li>
-          <li class="module"><span class="module__n">03</span> Spending Smart</li>
+          <li class="module"><span class="module__n">0.1</span> Why Financial Literacy Matters</li>
         </ul>
+        <p class="term__f">Understand why money skills matter in everyday life.</p>
+      </div>
+
+      <div class="term rise" data-d="2">
+        <div class="term__rule">
+          <span class="term__n">module 1</span><h3 class="term__t">Money and Behavior</h3><span class="term__dash"></span><span class="term__r">2 lessons</span>
+        </div>
+        <ul class="modules">
+          <li class="module"><span class="module__n">1.1</span> Money and Choices</li>
+          <li class="module"><span class="module__n">1.2</span> Earning Money</li>
+        </ul>
+        <p class="term__f">Explore how people earn money and what shapes their financial decisions.</p>
       </div>
 
       <div class="term rise" data-d="3">
         <div class="term__rule">
-          <span class="term__n">term 2</span><span class="term__dash"></span><span class="term__r">Lessons 4 to 8</span>
+          <span class="term__n">module 2</span><h3 class="term__t">Spending Money</h3><span class="term__dash"></span><span class="term__r">2 lessons</span>
         </div>
         <ul class="modules">
-          <li class="module"><span class="module__n">04</span> Building a Budget</li>
-          <li class="module"><span class="module__n">05</span> Keeping Track of Spending</li>
-          <li class="module"><span class="module__n">06</span> Saving for Goals</li>
-          <li class="module"><span class="module__n">07</span> Money Can Grow</li>
-          <li class="module"><span class="module__n">08</span> Inflation and Purchasing Power</li>
+          <li class="module"><span class="module__n">2.1</span> How We Make Money Choices</li>
+          <li class="module"><span class="module__n">2.2</span> Spending Smart</li>
         </ul>
+        <p class="term__f">Distinguish needs from wants, consider trade-offs, and make thoughtful purchasing decisions.</p>
+      </div>
+
+      <div class="term rise" data-d="3">
+        <div class="term__rule">
+          <span class="term__n">module 3</span><h3 class="term__t">Managing Money</h3><span class="term__dash"></span><span class="term__r">2 lessons</span>
+        </div>
+        <ul class="modules">
+          <li class="module"><span class="module__n">3.1</span> Building a Budget</li>
+          <li class="module"><span class="module__n">3.2</span> Keeping Track of Spending</li>
+        </ul>
+        <p class="term__f">Plan how to use money and compare planned spending with actual spending.</p>
       </div>
 
       <div class="term rise" data-d="4">
         <div class="term__rule">
-          <span class="term__n">term 3</span><span class="term__dash"></span><span class="term__r">Lessons 9 to 14</span>
+          <span class="term__n">module 4</span><h3 class="term__t">Saving, Growth &amp; Purchasing Power</h3><span class="term__dash"></span><span class="term__r">3 lessons</span>
         </div>
         <ul class="modules">
-          <li class="module"><span class="module__n">09</span> Banks and Accounts</li>
-          <li class="module"><span class="module__n">10</span> Borrowing and Debt</li>
-          <li class="module"><span class="module__n">11</span> Introduction to Investing</li>
-          <li class="module"><span class="module__n">12</span> Protecting Your Money Online</li>
-          <li class="module"><span class="module__n">13</span> Scams and Consumer Protection</li>
-          <li class="module"><span class="module__n">14</span> My Money Plan</li>
+          <li class="module"><span class="module__n">4.1</span> Saving for Goals</li>
+          <li class="module"><span class="module__n">4.2</span> Money Can Grow: An Introduction to Investment</li>
+          <li class="module"><span class="module__n">4.3</span> Money Can Shrink: Inflation and Purchasing Power</li>
         </ul>
+        <p class="term__f">Set savings goals and explore how money&rsquo;s value can change over time.</p>
+      </div>
+
+      <div class="term rise" data-d="4">
+        <div class="term__rule">
+          <span class="term__n">module 5</span><h3 class="term__t">Financial Services, Borrowing &amp; Investing</h3><span class="term__dash"></span><span class="term__r">3 lessons</span>
+        </div>
+        <ul class="modules">
+          <li class="module"><span class="module__n">5.1</span> Banks and Accounts</li>
+          <li class="module"><span class="module__n">5.2</span> Borrowing and Debt</li>
+          <li class="module"><span class="module__n">5.3</span> Introduction to Investing</li>
+        </ul>
+        <p class="term__f">Understand basic financial services, the responsibilities of borrowing, and the relationship between investment risk and return.</p>
+      </div>
+
+      <div class="term rise" data-d="5">
+        <div class="term__rule">
+          <span class="term__n">module 6</span><h3 class="term__t">Financial Safety &amp; Future Readiness</h3><span class="term__dash"></span><span class="term__r">3 lessons</span>
+        </div>
+        <ul class="modules">
+          <li class="module"><span class="module__n">6.1</span> Protecting Your Money Online</li>
+          <li class="module"><span class="module__n">6.2</span> Scams, Consumer Protection &amp; Getting Help</li>
+          <li class="module"><span class="module__n">6.3</span> My Money Plan</li>
+        </ul>
+        <p class="term__f">Practise safe financial habits, recognise warning signs, and bring learning together in a personal plan.</p>
       </div>
 
       <p class="prog__note rise" data-d="5">Ask us for the full scheme of work, including learning outcomes, assessment points, and the lesson pack for any lesson you want to see first.</p>
@@ -635,7 +681,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
       <div class="facts">
         <div class="fact pennant slide" data-d="1">
           <p class="fact__l"><b>01</b> Timetable</p>
-          <p class="fact__x">One period a week, or a block in advisory or life skills. Schools also run it as an after school club. We will map the 14 lessons to whatever slot you have.</p>
+          <p class="fact__x">One period a week, or a block in advisory or life skills. Schools also run it as an after school club. We will map the 16 lessons to whatever slot you have.</p>
         </div>
         <div class="fact pennant slide" data-d="2">
           <p class="fact__l"><b>02</b> Cost to the school</p>
