@@ -5,7 +5,7 @@
 <script>document.documentElement.className+=" js"</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%234ab77c%22/%3E%3Cg%20transform%3D%22translate%28-104.5%2C-26.5%29%20scale%281.05%29%22%3E%3Cpolygon%20fill%3D%22%23ffffff%22%20points%3D%22144.12%2046.81%20144.59%2064.33%20149.5%2063.76%20148.39%2058.02%20153.34%2065.63%20158.62%2061.98%20148.99%2052.71%20154.46%2049.4%20150.9%2042.24%20144.12%2046.81%22%3E%3Cpolygon%20fill%3D%22%23ffffff%22%20points%3D%22128.22%2050.68%20120.29%2045.77%20130.01%2036.67%20137.23%2039.65%20143.62%2064.46%20135.15%2071.36%20127.62%2069.01%20123.38%2061.01%20127.93%2057.09%20133.11%2061.79%20135.93%2060.23%20131.74%2045.77%20128.22%2050.68%22%3E%3Ccircle%20fill%3D%22%23ffffff%22%20cx%3D%22162.02%22%20cy%3D%2259.53%22%20r%3D%222.96%22%3E%3C/g%3E%3C/svg%3E">
-<title>Yabi Junior — money lessons that end in a real savings account</title>
+<title>Yabi Junior — financial literacy roadmaps for international schools in Egypt</title>
 <meta name="description" content="A 16 lesson, 7 module financial literacy programme for grades 7 to 9 in Egyptian international schools. Students learn how money works, set a savings goal, then fund it in a real account.">
 
 <!-- Fallback webfonts. The four real brand faces are declared in @font-face below. -->
@@ -74,12 +74,13 @@
   --ls-display:.045em;     /* tracking for everything set in Talina */
   --copy:21px;             /* body copy size, used by every prose paragraph */
   --copy-w:500;
-  --shell:1120px;
+  --shell:1232px;
   --tip:38px;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:72px}
 /* the whole page renders at 80%: same layout, more air around it */
 body{
   zoom:.8;
@@ -120,23 +121,38 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
    ============================================================ */
 /* Reveals are opt-in: nothing is hidden unless JS has confirmed it is running,
    so the page stays fully readable if a script is blocked or fails. */
-.js .rise,.js .slide,.js .pop{opacity:0;will-change:transform,opacity}
-.js .rise{transform:translateY(22px)}
-.js .slide{transform:translateX(-46px)}
-.js .pop{transform:scale(.72) rotate(-8deg)}
-.is-in .rise,.rise.is-in{opacity:1;transform:none;transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.3,1)}
-.is-in .slide,.slide.is-in{opacity:1;transform:none;transition:opacity .5s ease,transform .62s cubic-bezier(.2,.85,.3,1)}
-.is-in .pop,.pop.is-in{opacity:1;transform:none;transition:opacity .35s ease,transform .58s cubic-bezier(.34,1.56,.64,1)}
-[data-d="1"]{transition-delay:.08s!important} [data-d="2"]{transition-delay:.16s!important}
-[data-d="3"]{transition-delay:.24s!important} [data-d="4"]{transition-delay:.32s!important}
-[data-d="5"]{transition-delay:.40s!important} [data-d="6"]{transition-delay:.48s!important}
+/* One motion language for the whole page: a short, soft rise with a long
+   ease-out. Sections reveal once as they enter; the hero gets one load sequence. */
+:root{--ease-out:cubic-bezier(.22,1,.36,1)}
+.js .rise,.js .slide,.js .pop{opacity:0;transform:translateY(18px)}
+.is-in .rise,.rise.is-in,.is-in .slide,.slide.is-in,.is-in .pop,.pop.is-in{opacity:1;transform:none;
+  transition:opacity .7s var(--ease-out) var(--d,0s),transform .9s var(--ease-out) var(--d,0s)}
+/* the demo player slides up from further below, so it reads as arriving */
+.js .demo__frame.rise{transform:translateY(90px)}
+.js .demo__frame.rise.is-in{transform:none;transition:opacity .8s var(--ease-out) var(--d,0s),transform 1.2s var(--ease-out) var(--d,0s)}
+[data-d="1"]{--d:.06s} [data-d="2"]{--d:.14s} [data-d="3"]{--d:.22s}
+[data-d="4"]{--d:.30s} [data-d="5"]{--d:.38s} [data-d="6"]{--d:.46s}
+/* hero: the character settles in, then the two stickers pop onto the headline */
+.js .hero .hero__char{opacity:0;transform:translateY(26px)}
+.hero.is-in .hero__char{opacity:1;transform:none;transition:opacity .9s var(--ease-out) 1.3s,transform 1.1s var(--ease-out) 1.3s}
+.js .hero .hs{opacity:0;transform:scale(.4) rotate(-20deg)}
+.hero.is-in .hs{opacity:1;transition:opacity .25s ease .75s,transform .6s cubic-bezier(.34,1.56,.64,1) .75s}
+.hero.is-in .hs--bang{transform:rotate(9deg)}
+.hero.is-in .hs--apple{transform:rotate(-10deg)}
+/* read-along: title lines rise one after another, then the sentence, actions and stats */
+.js .hero h1 .ln{opacity:0;transform:translateY(.5em)}
+.hero.is-in h1 .ln{opacity:1;transform:none;transition:opacity .8s var(--ease-out) var(--ld),transform 1s var(--ease-out) var(--ld)}
+.hero h1 .ln1{--ld:.15s} .hero h1 .ln2{--ld:.35s} .hero h1 .ln3{--ld:.55s}
+.hero .hero__lede{--d:.85s} .hero .hero__actions{--d:1.05s} .hero .stats{--d:1.2s}
+.hero.is-in .hs--bang{transition-delay:.3s,.3s}
+.hero.is-in .hs--apple{transition-delay:.7s,.7s}
 
 /* continuous character motion */
 
 /* ============================================================
    TOP BAR
    ============================================================ */
-.topbar{position:sticky;top:0;z-index:80;background:var(--purple);transition:box-shadow .25s ease}
+.topbar{position:sticky;top:0;z-index:80;background:var(--purple-deep);transition:box-shadow .25s ease}
 .topbar.is-past{box-shadow:0 4px 16px rgba(35,31,32,.18)}
 .topbar__in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:78px}
 /* real logo artwork traced from the source SVG.
@@ -152,27 +168,74 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
   transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
 }
 .navcall .ic{--ic-ink:currentColor;--ic-paper:transparent;width:20px;height:20px}
+/* the hero already has its own call button, so the bar's one waits until the hero scrolls away */
+/* pure fade in/out: no movement, just opacity (visibility flips after fading out so it can't be clicked) */
+.navcall{opacity:0;visibility:hidden;
+  transition:opacity .45s ease,visibility 0s linear .45s,transform .18s ease,background .18s ease,box-shadow .18s ease}
+.topbar.is-past .navcall{opacity:1;visibility:visible;
+  transition:opacity .45s ease,visibility 0s,transform .18s ease,background .18s ease,box-shadow .18s ease}
+.topbar.is-past.is-form .navcall{opacity:0;visibility:hidden;
+  transition:opacity .45s ease,visibility 0s linear .45s,transform .18s ease,background .18s ease,box-shadow .18s ease}
+/* section links: short names, quiet until hovered */
+/* sizes are pre-zoom: body renders at .8, so 20px reads as ~16px on screen */
+.navlinks{list-style:none;margin:0;padding:0;display:flex;gap:56px}
+/* logo | links dead centre | call button: equal side columns keep the links centred
+   whether or not the call button is showing */
+@media (min-width:861px){.topbar__in{display:grid;grid-template-columns:1fr auto 1fr}
+  .topbar__in .wordmark{justify-self:start} .topbar__in .navcall{justify-self:end}}
+.navlinks a{font-family:var(--f-body);font-size:20px;font-weight:500;letter-spacing:.01em;color:rgba(255,255,255,.82);text-decoration:none;
+  padding:6px 0;border-bottom:2px solid transparent;transition:color .18s ease,border-color .18s ease}
+.navlinks a:hover,.navlinks a:focus-visible{color:#fff;border-bottom-color:var(--green)}
+@media (max-width:860px){.navlinks{display:none}}
+
+/* video lightbox (CEO + demo): the video lifts out of its card, centres, and the page dims behind it */
+.vbox-dim{position:fixed;inset:0;z-index:190;background:rgba(24,19,43,.8);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s;cursor:zoom-out}
+.vbox-dim.on{opacity:1;visibility:visible;transition:opacity .4s ease,visibility 0s}
+.igcard__media.is-boxed,.demo__media.is-boxed{position:fixed;z-index:200;border-radius:14px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.vbox-x{position:fixed;z-index:210;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,.14);color:#fff;font-size:26px;line-height:44px;text-align:center;
+  opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s,background .18s ease}
+.vbox-x:hover{background:rgba(255,255,255,.26)}
+.vbox-dim.on + .vbox-x{opacity:1;visibility:visible;transition:opacity .3s ease .15s,visibility 0s,background .18s ease}
 .navcall:hover{transform:translateY(-2px);background:var(--green);box-shadow:0 0 0 3px var(--green-deep)}
 
 /* ============================================================
    HERO
    ============================================================ */
-.hero{background:var(--purple);color:#fff;padding:70px 0 0;position:relative;overflow:hidden}
-.hero__grid{display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:center}
+/* dark purple under the top bar, easing to a lighter purple at the bottom */
+.hero{background:linear-gradient(180deg,var(--purple-deep) 0%,var(--purple) 55%,#8a77c4 100%);color:#fff;padding:clamp(48px,7vw,96px) 0 clamp(40px,5vw,64px);position:relative;overflow:hidden}
+/* copy left, character standing on the stats strip at the right */
+.hero__in{display:grid;grid-template-columns:minmax(0,1fr) clamp(230px,24vw,320px);column-gap:clamp(20px,3vw,40px);
+  grid-template-areas:"copy char" "stats stats";align-items:end}
+.hero__copy{grid-area:copy;align-self:center;padding-bottom:clamp(28px,4vw,56px)}
+.hero__char{grid-area:char}
+.stats{grid-area:stats}
 .hero__eyebrow{font-family:var(--f-body);font-weight:600;font-size:24px;color:#70d990;margin:0 0 16px}
+/* same hand-set, cascading three-line treatment as the programme headline
+   (.prog h2), sized down for the narrower hero column; stays white on purple */
 .hero h1{
-  font-family:var(--f-display);font-weight:600;text-transform:uppercase;
-  font-size:clamp(2.1rem,5.4vw,3.75rem);line-height:1.04;letter-spacing:var(--ls-display);margin:0 0 24px;
+  font-family:var(--f-display);font-weight:normal;   /* Talina at its own weight */
+  font-size:clamp(2.1rem,4.3vw,3.3rem);line-height:1.17;letter-spacing:.02em;margin:0 0 22px;
 }
-.hero__lede{font-size:var(--copy);font-weight:var(--copy-w);line-height:1.5;color:#fbf9ff;max-width:30em;margin-bottom:30px}
-.hero__actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+/* hero headline: lines share one left edge; stickers sit clear of the words */
+.hero h1 .ln.ln2,.hero h1 .ln.ln3{padding-left:0}
+.hero h1 .ln.ln{white-space:normal}
+.hero h1 .nw{white-space:nowrap}
+.hs{display:inline-block;overflow:visible}
+.hs--bang{width:.52em;height:1.26em;margin:-.3em 0 -.2em .08em;vertical-align:-.12em;transform:rotate(9deg)}
+.hs--apple{width:1.08em;height:1.04em;margin:-.2em .2em -.15em -.04em;vertical-align:-.16em;transform:rotate(-10deg)}   /* wrap rather than clip on narrow screens */
+.hero__lede{font-size:clamp(18px,1.7vw,22px);font-weight:400;line-height:1.5;color:rgba(255,255,255,.9);max-width:31em;margin:0 0 32px}
+.hero__actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.hero .btn{font-size:18px;padding:17px 32px}
 .hero__char{position:relative;display:flex;align-items:center;justify-content:center}
 /* light disc so the purple character reads against the purple field */
 .hero__char::before{
-  content:"";position:absolute;width:284px;height:284px;border-radius:50%;
-  background:var(--paper);left:calc(50% - 142px);top:calc(50% - 142px);
+  content:"";position:absolute;width:88%;aspect-ratio:1;border-radius:50%;
+  background:var(--paper);left:6%;bottom:12%;
 }
-.hero__char .ill{position:relative;width:76%;aspect-ratio:297/477;filter:drop-shadow(0 16px 26px rgba(35,31,32,.20))}
+.hero__char .ill{position:relative;display:block;width:78%;margin:0 auto -6px;aspect-ratio:297/477;filter:drop-shadow(0 16px 26px rgba(35,31,32,.25))}
 
 .btn{
   font-family:var(--f-display);font-size:16px;letter-spacing:var(--ls-display);text-decoration:none;cursor:pointer;
@@ -188,11 +251,12 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 .btn .ic{--ic-ink:currentColor;--ic-paper:transparent;width:20px;height:20px}
 
 /* stat pills with the drawn numerals */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:46px 0 0;padding-bottom:58px}
-.stat{background:#fff;border-radius:22px;padding:14px 18px;display:flex;align-items:center;gap:11px;
-  box-shadow:0 0 0 3px #7560a7}
+.stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-radius:22px;
+  box-shadow:0 18px 40px -22px rgba(35,31,32,.55);position:relative;z-index:2}
+.stat{display:flex;align-items:center;justify-content:center;gap:12px;padding:18px 16px;min-height:84px}
+.stat + .stat{border-left:2.5px dashed rgba(100,84,147,.28)}
 .stat__num{display:flex;align-items:center;gap:2px;flex:0 0 auto}
-.stat__num .ic{width:40px;height:40px;margin-right:-2px}
+.stat__num .ic{width:44px;height:44px;margin-right:-11px}
 .stat__num .ic:last-child{margin-right:0}
 .stat__lab{font-family:var(--f-hand);font-size:19px;line-height:1.2;color:var(--purple);letter-spacing:.02em}
 .stat__lab small{display:block;font-family:var(--f-body);font-size:12.5px;text-transform:none;letter-spacing:0;color:#7869a1}
@@ -201,41 +265,54 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 /* ============================================================
    HOW IT WORKS
    ============================================================ */
-.how{background:#fff;padding:82px 0}
-.how h2{font-family:var(--f-hand);font-size:clamp(2.4rem,6.2vw,4.2rem);color:var(--green-head);line-height:1;margin:0 0 4px;font-weight:400}
-.how__kicker{font-family:var(--f-display);font-weight:600;letter-spacing:var(--ls-display);
-  font-size:clamp(1.3rem,2.7vw,1.9rem);color:var(--purple);margin:0 0 20px;line-height:1.18}
-.how__sub{font-size:var(--copy);font-weight:var(--copy-w);max-width:29em;margin-bottom:56px;color:var(--purple);line-height:1.5}
 
 /* Plate AND lettering are outlined vector in the source, so the tag is traced
    whole rather than set as live text. Labelled for screen readers. */
 .tag{display:inline-block;width:clamp(168px,21%,282px);aspect-ratio:279.7/42.4;margin-bottom:14px}
 .tag svg{display:block;width:100%;height:100%}
-/* MODULE is bare green type in the reference, no plate behind it */
-.how__module{position:relative;z-index:2;font-family:var(--f-hand);font-size:clamp(1.9rem,4.1vw,2.7rem);
-  color:var(--green);line-height:1.05;margin:0 0 2px;padding-left:8px;display:block}
 
 
-/* Square corners, fixed lighter left column, staircase widths — all measured
-   off the reference image (86.4% / 93.4% / 100%). */
-.step{display:grid;grid-template-columns:202px 1fr;gap:0;margin-bottom:8px;
-  border-radius:0;overflow:hidden;min-height:152px;color:#fff}
-/* Source SVG draws each row as two rects: a left layer, then the main layer
-   on top. Widths 1074/1160/1241 of the 1366 artboard = 86.5/93.5/100%. */
-.step--g{background:#6ec185;width:86.5%}
-.step--g .step__when{background:#62d585}
-.step--r{background:#ec1c24;width:93.5%}
-.step--r .step__when{background:#eb444d}
-.step--p{background:#645493;width:100%}
-.step--p .step__when{background:#7560a9}
-.step__when{
-  font-family:var(--f-hand);font-size:clamp(2rem,3.6vw,2.9rem);font-weight:400;line-height:1.05;color:#fff;letter-spacing:0;white-space:nowrap;
-  padding:22px 18px;display:flex;align-items:center;justify-content:center;text-align:center;
-}
-.step__body{padding:22px 30px;color:#fff;display:flex;flex-direction:column;justify-content:center}
-.step__t{font-family:var(--f-display);font-weight:600;font-size:clamp(1.1rem,2.1vw,1.3rem);
-  margin:0 0 6px;line-height:1.2;letter-spacing:var(--ls-display);color:#fff}
-.step__x{margin:0;font-size:var(--copy);font-weight:var(--copy-w);line-height:1.45;max-width:44em;color:#fff}
+/* Three module columns: solid brand colour on top, lessons listed underneath */
+.tracks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.track{--accent:#645493;--tint:#f0eef8;--num:#645493;--on:#fff;
+  display:flex;flex-direction:column;background:var(--tint);border-radius:18px;overflow:hidden}
+.track--g{--accent:#62d585;--tint:#ecf8f0;--num:#2d7a4a;--on:var(--ink)}
+.track--r{--accent:#ec1c24;--tint:#fdeeee;--num:#c0151c;--on:#fff}
+.track--p{--accent:#645493;--tint:#f0eef8;--num:#645493;--on:#fff}
+.track__head{margin:0;background:var(--accent);color:var(--on);padding:18px 24px 16px;
+  display:flex;align-items:flex-start;gap:12px}
+/* number is primary, the word "Module(s)" secondary */
+.track__lab{font-family:var(--f-body);font-size:16px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;opacity:.85;
+  line-height:1;margin-top:.25em}
+.track__art{padding:18px 24px 0;display:flex;justify-content:center}
+.track__art img{display:block;width:100%;max-width:300px;height:auto}
+.track__num{font-family:var(--f-hand);font-weight:400;font-size:clamp(2.8rem,4.4vw,3.8rem);line-height:.9;letter-spacing:.01em}
+.track__list{list-style:none;margin:0;padding:16px 14px 20px;display:flex;flex-direction:column;gap:8px}
+.track__list li{display:flex;gap:10px;align-items:baseline;background:#fff;border-radius:12px;padding:11px 14px;
+  font-family:var(--f-body);font-size:19px;font-weight:700;line-height:1.3;color:var(--purple-deep)}
+.track__list .n{flex:0 0 auto;min-width:1.6em;text-align:right;font-family:var(--f-display);font-weight:600;font-size:16px;
+  letter-spacing:var(--ls-display);color:var(--num)}
+
+/* ============================================================
+   DEMO VIDEO
+   ============================================================ */
+.demo{background:var(--paper);padding:82px 0}
+.demo__k{font-family:var(--f-body);font-size:19px;color:var(--purple);margin:0 0 6px}
+.demo h2{font-family:var(--f-hand);font-weight:400;font-size:clamp(2.2rem,5.8vw,3.9rem);color:var(--green-head);line-height:1;margin:0 0 34px}
+.demo__frame{position:relative;background:var(--purple-deep);padding:10px;box-shadow:0 0 0 3px var(--green-deep)}
+/* Instagram-style play button, shared by every video: a translucent white
+   triangle with a soft shadow. JS reveals it and hides native controls until play. */
+.vplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+  width:clamp(68px,8vw,92px);aspect-ratio:1;border:0;padding:0;background:transparent;cursor:pointer;
+  display:grid;place-items:center;transition:transform .18s ease,opacity .18s ease;opacity:.92}
+.vplay svg{width:100%;height:100%;fill:#fff;stroke:#fff;stroke-width:2.4;stroke-linejoin:round;
+  filter:drop-shadow(0 2px 10px rgba(0,0,0,.38))}
+.vplay:hover{transform:translate(-50%,-50%) scale(1.08);opacity:1}
+.vplay:active{transform:translate(-50%,-50%) scale(.96)}
+.vplay[hidden]{display:none}
+.demo__media{position:relative;background:var(--purple-deep)}
+.demo__media video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--purple-deep)}
+.demo__media a{color:#fff}
 
 /* ============================================================
    PROGRAMME
@@ -243,6 +320,9 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 .prog{background:#f8faf7;padding:88px 0 76px;position:relative;overflow:hidden}
 /* the reference sets the whole block wider than the old 860px column */
 .prog__head{max-width:none;position:relative;z-index:2}
+.title-star{display:inline-block;width:.62em;height:.64em;margin-left:.18em;vertical-align:.32em;transform:rotate(12deg)}
+.prog__head .prog__title{font-family:var(--f-hand);font-weight:400;font-size:clamp(2.2rem,5.8vw,3.9rem);color:var(--green-head);
+  line-height:1;letter-spacing:0;margin:0 0 38px}
 /* absolutely placed so its height never inflates the line box */
 .deco--bang{position:absolute;left:100%;bottom:-.1em;width:.6em;aspect-ratio:53/128;margin-left:.02em}
 /* two decorations traced from the source: green star top-right of the
@@ -250,32 +330,23 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 /* Stickers hang off the text lines themselves and are sized in em, so they
    keep their relationship to the words at every viewport. None of them move. */
 .deco{position:absolute;pointer-events:none}
-.prog h2 .anchor{position:relative;display:inline-block}
+.prog h2 .anchor,.hero h1 .anchor{position:relative;display:inline-block}
 .deco--star{width:1.3em;aspect-ratio:121/124;left:calc(100% - .05em);top:-.45em}
 .deco--heart{width:1.05em;aspect-ratio:106/102.5;right:100%;margin-right:.14em;top:.04em;
   z-index:4;transform:rotate(-9deg);overflow:visible}
 /* Three hand-set lines with a cascading indent, measured off the reference
    at 8.8% / 13.4% / 17.8% of the block width. */
-.prog h2{font-family:var(--f-display);font-weight:600;font-size:clamp(2rem,7.2vw,6.25rem);
-  line-height:1.04;letter-spacing:var(--ls-display);color:var(--purple);margin:0 0 26px}
-.prog h2 .ln{display:block;width:max-content;max-width:100%;position:relative;white-space:nowrap}
-.prog h2 .ln2{padding-left:8.2%}
-.prog h2 .ln3{padding-left:11.8%}
-/* .prog__head raises specificity above p:last-child{margin-bottom:0}, which
-   was silently cancelling this gap. */
-.prog__head .prog__sub{font-size:clamp(1.1rem,2.05vw,1.7rem);font-weight:500;line-height:1.35;
-  max-width:30em;margin:0 auto clamp(44px,5.4vw,80px);color:#ec1c24;text-align:center}
+.prog h2{font-family:var(--f-display);font-weight:600;font-size:clamp(1.5rem,6.2vw,3.9rem);
+  line-height:1.04;letter-spacing:var(--ls-display);color:var(--purple);margin:0 0 clamp(24px,3vw,40px)}
+.prog h2 .ln,.hero h1 .ln{display:block;width:max-content;max-width:100%;position:relative;white-space:nowrap}
+.prog h2 .ln2,.hero h1 .ln2{padding-left:8.2%}
+.prog h2 .ln3,.hero h1 .ln3{padding-left:11.8%}
 .prog__glass{
   position:absolute;right:-40px;top:40px;width:230px;opacity:.9;z-index:1;
   animation:peer 9s ease-in-out infinite;transform-origin:38% 34%;
 }
 .prog__glass .ill{width:100%;aspect-ratio:428/552}
 
-.term{margin-bottom:34px}
-.term__rule{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.term__n{font-family:var(--f-hand);font-size:21px;color:var(--green);text-transform:lowercase;white-space:nowrap}
-.term__dash{flex:1;height:0;border-top:2.9px dashed var(--purple);opacity:.55}
-.term__r{font-family:var(--f-body);font-size:15px;color:var(--purple);white-space:nowrap}
 
 .modules{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:0}
 .module{
@@ -286,12 +357,33 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 }
 .module:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(100,84,147,.16)}
 .module__n{font-family:var(--f-hand);font-size:14px;color:#7059a4}
-.prog__note{margin-top:34px;max-width:41em;font-size:var(--copy);font-weight:var(--copy-w);
-  line-height:1.35;color:var(--purple)}
 
-.term__t{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(1.05rem,1.9vw,1.3rem);
-  letter-spacing:var(--ls-display);color:var(--purple);line-height:1.2}
-.term__f{margin:12px 0 0;max-width:46em;font-size:17px;line-height:1.45;color:var(--purple)}
+
+
+/* CEO message inside the programme section */
+.ceo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:40px;align-items:center;
+  margin-top:56px;padding:40px;background:var(--paper)}
+.ceo__h{font-family:var(--f-hand);font-weight:400;font-size:clamp(2.2rem,5.2vw,3.6rem);color:var(--green-head);line-height:1;margin:0}
+.ceo__q{margin:22px 0 0;font-family:var(--f-display);font-weight:600;letter-spacing:var(--ls-display);
+  font-size:clamp(1.2rem,2.3vw,1.7rem);line-height:1.25;color:var(--purple);max-width:16em}
+.ceo__embed{display:flex;justify-content:center}
+/* Instagram post look-alike */
+.igcard{margin:0;width:100%;max-width:400px;background:#fff;border-radius:4px;overflow:hidden;
+  box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#000}
+.igcard__head{display:flex;align-items:center;gap:10px;padding:10px 12px}
+.igcard__av{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--purple);display:grid;place-items:center;
+  box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--green)}
+.igcard__av svg{width:26px;height:9px;--logo-mark:var(--green)}
+.igcard__who{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.igcard__who b{font-size:14px;font-weight:600}
+.igcard__who small{font-size:12px;color:#737373}
+.igcard__view{flex:0 0 auto;background:#4a5df9;color:#fff;font-size:14px;font-weight:600;text-decoration:none;padding:7px 12px;border-radius:8px}
+.igcard__view:hover{background:#3b4ee0}
+.igcard__media{position:relative;background:#000}
+.igcard__media video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;background:#000}
+.igcard__more{display:block;padding:12px;color:#4a5df9;font-size:14px;font-weight:600;text-decoration:none}
+.igcard__more:hover{text-decoration:underline}
 
 /* ============================================================
    WHAT IT TAKES
@@ -327,7 +419,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 .fact__l{font-family:var(--f-display);font-size:clamp(1.25rem,2.1vw,1.7rem);margin:0 0 8px;
   line-height:1.2;letter-spacing:var(--ls-display);display:flex;gap:16px;align-items:baseline}
 .fact__l b{font-family:var(--f-hand);font-weight:400;font-size:.85em;opacity:1;flex:0 0 auto}
-.fact__x{margin:0;padding-left:calc(1.7em + 16px);font-size:var(--copy);font-weight:var(--copy-w);
+.fact__x{margin:0;padding-left:0;font-size:var(--copy);font-weight:var(--copy-w);
   line-height:1.45;color:#fff;max-width:38em}
 .fact:nth-child(3) .fact__x,.fact:nth-child(4) .fact__x{color:var(--ink)}
 
@@ -354,13 +446,14 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 .panel{background:transparent;border-radius:0;padding:0;box-shadow:none}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
-.field label{font-family:var(--f-body);font-size:14px;color:var(--purple-mid);text-transform:uppercase;letter-spacing:.04em}
+.field label{font-family:var(--f-body);font-size:15px;font-weight:500;color:var(--purple-deep);letter-spacing:0}
 .field .req{color:var(--red)}
 .field input,.field select,.field textarea{
   font-family:var(--f-body);font-size:16px;color:var(--purple);background:#fff;
-  border:1.8px solid var(--purple-mid);border-radius:10px;padding:13px 16px;width:100%;min-height:50px;
-  transition:border-color .18s ease;
+  border:1.8px solid rgba(117,96,169,.55);border-radius:10px;padding:13px 16px;width:100%;min-height:50px;
+  transition:border-color .2s var(--ease-out),box-shadow .2s var(--ease-out);
 }
+.field input:hover,.field select:hover,.field textarea:hover{border-color:var(--purple-mid)}
 .field textarea{resize:vertical;min-height:104px}
 .field input::placeholder,.field textarea::placeholder{color:#b9b0d1;opacity:1;font-size:16px;letter-spacing:.01em}
 /* native arrow replaced with the solid purple caret from the reference */
@@ -369,7 +462,9 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
   background-position:right 18px center;background-size:14px 9px}
 .field select{color:var(--purple)}
 .field select:has(option[value=""]:checked){color:#b9b0d1}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--purple-mid);outline:none}
+.field input:focus,.field select:focus,.field textarea:focus,
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{
+  border-color:var(--purple);outline:none;box-shadow:0 0 0 4px rgba(98,213,133,.6)}
 .field--error input,.field--error select{border-color:var(--red)}
 .err{font-size:13px;color:var(--red);display:none;font-family:var(--f-body)}
 .errsum{display:none;font-family:var(--f-body);font-size:15px;color:#fff;background:var(--red);
@@ -384,12 +479,17 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
   transition:all .18s ease;
 }
 .chip:hover{border-color:var(--purple-mid);transform:translateY(-2px)}
-.chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.chip[aria-pressed="true"]{background:var(--purple);border-color:var(--purple);color:#fff;transform:none}
+.chip[aria-pressed="true"]::before{content:"\2713";margin-right:8px;font-family:var(--f-body);font-weight:700;color:var(--green)}
+.chip:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(98,213,133,.55)}
 
 .consent{display:flex;flex-direction:row;gap:14px;align-items:center;margin:8px 0 28px}
-.consent input{width:26px;height:26px;min-height:0;border-radius:4px;flex:0 0 auto;margin:0;
-  accent-color:var(--green-deep);cursor:pointer}
-.consent label{font-family:var(--f-hand);font-size:16px;color:var(--purple-deep);line-height:1.3;cursor:pointer;text-transform:none;letter-spacing:0}
+.consent input{appearance:none;-webkit-appearance:none;width:26px;height:26px;min-height:0;flex:0 0 auto;margin:0;
+  background:#fff;border:1.8px solid var(--purple-mid);border-radius:7px;cursor:pointer;display:grid;place-items:center;
+  transition:background-color .18s ease,border-color .18s ease,box-shadow .2s var(--ease-out)}
+.consent input:checked{background:var(--purple) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat;border-color:var(--purple)}
+.consent input:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(98,213,133,.55)}
+.consent label{font-family:var(--f-body);font-size:16px;font-weight:500;color:var(--purple-deep);line-height:1.4;cursor:pointer;text-transform:none;letter-spacing:0}
 
 /* starburst CTA, matching the source button shape */
 .burst{position:relative;border:0;background:none;padding:0;cursor:pointer;width:260px;height:154px;
@@ -421,7 +521,8 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
    ============================================================ */
 /* dual-tone focus ring: white core + dark halo, so it stays visible on the
    purple, green, red and white fields alike (WCAG 2.4.11) */
-:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px #231f20;border-radius:4px}
+:focus-visible{outline:3px solid var(--purple-deep);outline-offset:3px}
+.hero :focus-visible,.topbar :focus-visible,.foot :focus-visible{outline-color:var(--green)}
 .skip{position:fixed;left:12px;top:-60px;z-index:200;background:#231f20;color:#fff;
   font-family:var(--f-body);font-size:15px;padding:12px 20px;border-radius:0 0 8px 8px;
   text-decoration:none;transition:top .18s ease}
@@ -429,15 +530,14 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
-  .rise,.slide,.pop{opacity:1!important;transform:none!important}
+  .rise,.slide,.pop,.hero .hero__char,.hero .hs,.hero h1 .ln{opacity:1!important}
+  .rise,.slide,.pop,.hero .hero__char,.hero h1 .ln{transform:none!important}
   .mark::before{transform:scaleX(1)!important}
 }
 @media (max-width:1000px){
-  .hero__grid{grid-template-columns:1fr}
-  .hero__char{display:none}
+  .hero__in{grid-template-columns:minmax(0,1fr) 220px}
   .prog__glass{display:none}
   .talk__head{margin-bottom:30px}
-  .stats{grid-template-columns:1fr}
   .fact__x{padding-left:0}
   .fact,.fact:nth-child(n){margin-left:0;width:100%}
 }
@@ -446,15 +546,25 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
   body{font-size:16px}
   :root{--copy:18px}
   .shell{padding:0 20px}
-  .how,.prog,.takes,.talk{padding:58px 0}
-  .step,.step--g,.step--r,.step--p{grid-template-columns:1fr;width:100%}
-  .step__when{justify-content:flex-start;padding:14px 22px}
-  .step__body{padding:20px 22px}
+  .demo,.prog,.takes,.talk{padding:58px 0}
+  .tracks{grid-template-columns:1fr;gap:14px}
+  .demo__frame{padding:6px}
+  .ceo{grid-template-columns:1fr;gap:24px;padding:28px 16px;margin-top:44px}
+  .igcard{max-width:360px}
   .g2{grid-template-columns:1fr;gap:0}
   .panel{padding:24px 20px}
-  .term__rule{flex-wrap:wrap}
-  .term__dash{min-width:30px}
   .burst{width:100%;max-width:260px}
+  /* hero: copy then the stats strip; the character steps aside */
+  .hero__in{grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "stats"}
+  .hero__char{display:none}
+  .hero__copy{padding-bottom:32px}
+  .hero__actions{gap:10px}
+  .hero .btn{font-size:15.5px;padding:15px 20px}
+  .stat{flex-direction:column;gap:2px;padding:14px 6px;min-height:0;text-align:center}
+  .stat:nth-child(2){flex-direction:row;flex-wrap:wrap;justify-content:center;column-gap:6px}
+  .stat:nth-child(2) .stat__lab{flex-basis:100%;order:2}
+  .stat__num .ic{width:34px;height:34px;margin-right:-8px}
+  .stat__lab{font-size:15px}
 }
 </style>
 </head>
@@ -501,7 +611,13 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 <header class="topbar" id="topbar">
   <nav class="shell topbar__in" aria-label="Primary">
     <a class="wordmark" href="#top" aria-label="Yabi Junior, back to top"><svg aria-hidden="true"><use href="#yabi-logo"/></svg></a>
-    <a class="navcall" href="#talk"><svg class="ic" aria-hidden="true"><use href="#ic-phone"/></svg> Request a call</a>
+    <ul class="navlinks">
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#programme">Roadmap</a></li>
+      <li><a href="#ceo">Why?</a></li>
+      <li><a href="#takes">Run it</a></li>
+    </ul>
+    <a class="navcall" href="#talk" id="navcall"><svg class="ic" aria-hidden="true"><use href="#ic-phone"/></svg> Request a call</a>
   </nav>
 </header>
 
@@ -509,67 +625,55 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 
   <!-- ================= HERO ================= -->
   <section class="hero" data-reveal>
-    <div class="shell">
-      <div class="hero__grid">
-        <div>
-          <p class="hero__eyebrow rise">For international schools in Egypt</p>
-          <h1 class="rise" data-d="1">Money lessons that end in a real savings account</h1>
-          <p class="hero__lede rise" data-d="2">Yabi Junior is a 16 lesson financial literacy programme for grades 7 to 9, built around seven modules and a final money plan. Students learn how money works, set a savings goal that matters to them, then fund it in a real account.</p>
-          <div class="hero__actions rise" data-d="3">
-            <a class="btn btn--green" href="#talk"><svg class="ic" aria-hidden="true"><use href="#ic-phone"/></svg> Request a call</a>
-            <a class="btn btn--ghost" href="#programme">See modules</a>
-          </div>
+    <div class="shell hero__in">
+      <div class="hero__copy">
+        <h1>
+          <span class="ln ln1">Financial literacy <span class="nw">roadmaps<svg class="hs hs--bang" aria-hidden="true"><use href="#sh-bang"/></svg></span></span>
+          <span class="ln ln2">for international</span>
+          <span class="ln ln3"><svg class="hs hs--apple" aria-hidden="true"><use href="#sh-heart"/></svg>schools in Egypt</span>
+        </h1>
+        <p class="hero__lede rise" data-d="2">Sixteen short, game-based lessons that take students in grades 7 to 9 from everyday money choices to a money plan of their own.</p>
+        <div class="hero__actions rise" data-d="3">
+          <a class="btn btn--green" href="#talk"><svg class="ic" aria-hidden="true"><use href="#ic-phone"/></svg> Request a call</a>
+          <a class="btn btn--ghost" href="#programme">See the roadmap</a>
         </div>
-        <div class="hero__char"><svg class="ill" aria-hidden="true"><use href="#ill-char-money"/></svg></div>
       </div>
-
-      <div class="stats">
-        <div class="stat pop" data-d="1">
-          <span class="stat__num"><svg class="ic" aria-hidden="true"><use href="#ic-n1"/></svg><svg class="ic" aria-hidden="true"><use href="#ic-n6"/></svg></span>
-          <span class="stat__lab">Lessons</span>
-        </div>
-        <div class="stat pop" data-d="2">
-          <span class="stat__lab">Grades</span>
-          <span class="stat__num"><svg class="ic" aria-hidden="true"><use href="#ic-n7"/></svg></span>
+      <div class="hero__char" aria-hidden="true"><svg class="ill"><use href="#ill-char-money"/></svg></div>
+      <ul class="stats rise" data-d="3" aria-label="At a glance">
+        <li class="stat">
+          <span class="stat__num" aria-label="16"><svg class="ic" aria-hidden="true"><use href="#ic-n1"/></svg><svg class="ic" aria-hidden="true"><use href="#ic-n6"/></svg></span>
+          <span class="stat__lab">lessons</span>
+        </li>
+        <li class="stat">
+          <span class="stat__lab">grades</span>
+          <span class="stat__num" aria-label="7"><svg class="ic" aria-hidden="true"><use href="#ic-n7"/></svg></span>
           <span class="stat__mid">to</span>
-          <span class="stat__num"><svg class="ic" aria-hidden="true"><use href="#ic-n9"/></svg></span>
-        </div>
-        <div class="stat pop" data-d="3">
-          <span class="stat__num"><svg class="ic" aria-hidden="true"><use href="#ic-n0"/></svg></span>
-          <span class="stat__lab">Fees</span>
-        </div>
-      </div>
+          <span class="stat__num" aria-label="9"><svg class="ic" aria-hidden="true"><use href="#ic-n9"/></svg></span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" aria-label="0"><svg class="ic" aria-hidden="true"><use href="#ic-n0"/></svg></span>
+          <span class="stat__lab">fees for schools</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- ================= HOW IT WORKS ================= -->
-  <section class="how" id="how" data-reveal>
+  <!-- ================= DEMO VIDEO ================= -->
+  <section class="demo" id="demo" data-reveal>
     <div class="shell">
-      <h2 class="rise">How it works ?!</h2>
-      <p class="how__kicker rise" data-d="1">Learn it, choose a goal, put money in.</p>
-      <p class="how__sub rise" data-d="2">Most financial literacy stops at the worksheet. This one carries through to a student&rsquo;s own account, which is where the habit actually forms.</p>
-
-      <p class="how__module rise" data-d="3">Modules</p>
-
-      <div class="step step--g slide" data-d="3">
-        <div class="step__when">0&ndash;3</div>
-        <div class="step__body">
-          <h3 class="step__t">They learn how money behaves</h3>
-          <p class="step__x">Why money skills matter, how people earn, how needs, wants and habits drive spending, and how to build a budget and track it.</p>
-        </div>
-      </div>
-      <div class="step step--r slide" data-d="4">
-        <div class="step__when">4</div>
-        <div class="step__body">
-          <h3 class="step__t">They pick a goal worth saving for</h3>
-          <p class="step__x">Each student sets a savings goal, prices it, and sees how money can grow through investment and shrink through inflation.</p>
-        </div>
-      </div>
-      <div class="step step--p slide" data-d="5">
-        <div class="step__when">5&ndash;6</div>
-        <div class="step__body">
-          <h3 class="step__t">They fund it in a real account</h3>
-          <p class="step__x">They learn how banks, borrowing and investing work, then deposit into an account opened with our banking partner, with parent consent. The goal fills up in front of them.</p>
+      <p class="demo__k rise">40 second demo</p>
+      <h2 class="rise" data-d="1">See it in action</h2>
+      <div class="demo__frame rise" data-d="2" id="demo-frame">
+        <div class="demo__media">
+        <video id="demo-video" controls preload="none" playsinline width="1920" height="1080"
+               poster="media/yabi-junior-demo-poster.jpg"
+               aria-label="Yabi Junior lesson demo">
+          <source src="media/yabi-junior-demo.mp4" type="video/mp4">
+          <a href="media/yabi-junior-demo.mp4">Watch the Yabi Junior lesson demo (MP4, 40 seconds)</a>
+        </video>
+        <button class="vplay" type="button" id="demo-play" aria-label="Play the demo video, with sound" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7.5,4.8 19.5,12 7.5,19.2"/></svg>
+        </button>
         </div>
       </div>
     </div>
@@ -579,96 +683,75 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
   <section class="prog" id="programme" data-reveal>
     <div class="shell">
       <div class="prog__head">
-        <div class="rise"><span class="tag" role="img" aria-label="The programme"><svg aria-hidden="true"><use href="#sh-tagfull"/></svg></span></div>
-        <h2 class="rise" data-d="1">
-          <span class="ln ln1">Sixteen lessons,<svg class="deco deco--star" aria-hidden="true"><use href="#sh-star"/></svg></span>
-          <span class="ln ln2"><span class="anchor">seven modules,<svg class="deco deco--heart" aria-hidden="true"><use href="#sh-heart"/></svg></span></span>
-          <span class="ln ln3">one money plan<svg class="deco--bang" aria-hidden="true"><use href="#sh-bang"/></svg></span>
-        </h2>
-        <p class="prog__sub rise" data-d="2">Framework agnostic, so it sits alongside IB, British and American curricula without a rewrite. Delivered in English.</p>
+        <h2 class="prog__title rise">Roadmap<svg class="title-star" aria-hidden="true"><use href="#sh-star"/></svg></h2>
       </div>
 
-      <!-- Modules and lesson titles follow the Yabi Junior syllabus (7 modules, 16 lessons). -->
-      <div class="term rise" data-d="2">
-        <div class="term__rule">
-          <span class="term__n">module 0</span><h3 class="term__t">Programme Introduction</h3><span class="term__dash"></span><span class="term__r">1 lesson</span>
+      <!-- Lesson titles follow the Yabi Junior syllabus (16 lessons). -->
+      <div class="tracks">
+        <section class="track track--g rise" data-d="2" aria-labelledby="track-g">
+          <h3 class="track__head" id="track-g"><span class="track__lab">Modules</span> <span class="track__num">0&ndash;3</span></h3>
+          <div class="track__art"><img src="media/modules-learn.png" alt="" width="720" height="480" loading="lazy" decoding="async"></div>
+          <ul class="track__list">
+            <li><span class="n">1</span>Why Financial Literacy Matters</li>
+            <li><span class="n">2</span>Money and Choices</li>
+            <li><span class="n">3</span>Earning Money</li>
+            <li><span class="n">4</span>How We Make Money Choices</li>
+            <li><span class="n">5</span>Spending Smart</li>
+            <li><span class="n">6</span>Building a Budget</li>
+            <li><span class="n">7</span>Keeping Track of Spending</li>
+          </ul>
+        </section>
+        <section class="track track--r rise" data-d="3" aria-labelledby="track-r">
+          <h3 class="track__head" id="track-r"><span class="track__lab">Module</span> <span class="track__num">4</span></h3>
+          <div class="track__art"><img src="media/modules-goal.png" alt="" width="720" height="480" loading="lazy" decoding="async"></div>
+          <ul class="track__list">
+            <li><span class="n">8</span>Saving for Goals</li>
+            <li><span class="n">9</span>Money Can Grow: An Introduction to Investment</li>
+            <li><span class="n">10</span>Money Can Shrink: Inflation and Purchasing Power</li>
+          </ul>
+        </section>
+        <section class="track track--p rise" data-d="4" aria-labelledby="track-p">
+          <h3 class="track__head" id="track-p"><span class="track__lab">Modules</span> <span class="track__num">5&ndash;6</span></h3>
+          <div class="track__art"><img src="media/modules-bank.png" alt="" width="720" height="480" loading="lazy" decoding="async"></div>
+          <ul class="track__list">
+            <li><span class="n">11</span>Banks and Accounts</li>
+            <li><span class="n">12</span>Borrowing and Debt</li>
+            <li><span class="n">13</span>Introduction to Investing</li>
+            <li><span class="n">14</span>Protecting Your Money Online</li>
+            <li><span class="n">15</span>Scams, Consumer Protection &amp; Getting Help</li>
+            <li><span class="n">16</span>My Money Plan</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- CEO message: self-hosted video dressed as an Instagram post (no Instagram scripts load) -->
+      <div class="ceo" id="ceo">
+        <div class="ceo__text rise">
+          <h3 class="ceo__h">Hear it from our CEO:</h3>
+          <p class="ceo__q">&ldquo;Are we preparing kids for real life?&rdquo;</p>
         </div>
-        <ul class="modules">
-          <li class="module"><span class="module__n">0.1</span> Why Financial Literacy Matters</li>
-        </ul>
-        <p class="term__f">Understand why money skills matter in everyday life.</p>
-      </div>
-
-      <div class="term rise" data-d="2">
-        <div class="term__rule">
-          <span class="term__n">module 1</span><h3 class="term__t">Money and Behavior</h3><span class="term__dash"></span><span class="term__r">2 lessons</span>
+        <div class="ceo__embed rise" data-d="2">
+          <figure class="igcard">
+            <header class="igcard__head">
+              <span class="igcard__av" aria-hidden="true"><svg><use href="#yabi-logo"/></svg></span>
+              <span class="igcard__who"><b>yabijunior.eg</b><small>Original audio</small></span>
+              <a class="igcard__view" href="https://www.instagram.com/yabijunior.eg/" target="_blank" rel="noopener">View profile</a>
+            </header>
+            <div class="igcard__media">
+              <video id="ceo-video" controls preload="none" playsinline width="720" height="1280"
+                     poster="media/ceo-message-poster.jpg" aria-label="Message from the Yabi Junior CEO">
+                <source src="media/ceo-message.mp4" type="video/mp4">
+                <a href="media/ceo-message.mp4">Watch the message from our CEO (MP4)</a>
+              </video>
+              <button class="vplay" type="button" id="ceo-play" aria-label="Play the message from our CEO, with sound" hidden>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7.5,4.8 19.5,12 7.5,19.2"/></svg>
+              </button>
+            </div>
+            <a class="igcard__more" href="https://www.instagram.com/p/Dc9KzHvJhvj/" target="_blank" rel="noopener">View more on Instagram</a>
+          </figure>
         </div>
-        <ul class="modules">
-          <li class="module"><span class="module__n">1.1</span> Money and Choices</li>
-          <li class="module"><span class="module__n">1.2</span> Earning Money</li>
-        </ul>
-        <p class="term__f">Explore how people earn money and what shapes their financial decisions.</p>
       </div>
 
-      <div class="term rise" data-d="3">
-        <div class="term__rule">
-          <span class="term__n">module 2</span><h3 class="term__t">Spending Money</h3><span class="term__dash"></span><span class="term__r">2 lessons</span>
-        </div>
-        <ul class="modules">
-          <li class="module"><span class="module__n">2.1</span> How We Make Money Choices</li>
-          <li class="module"><span class="module__n">2.2</span> Spending Smart</li>
-        </ul>
-        <p class="term__f">Distinguish needs from wants, consider trade-offs, and make thoughtful purchasing decisions.</p>
-      </div>
-
-      <div class="term rise" data-d="3">
-        <div class="term__rule">
-          <span class="term__n">module 3</span><h3 class="term__t">Managing Money</h3><span class="term__dash"></span><span class="term__r">2 lessons</span>
-        </div>
-        <ul class="modules">
-          <li class="module"><span class="module__n">3.1</span> Building a Budget</li>
-          <li class="module"><span class="module__n">3.2</span> Keeping Track of Spending</li>
-        </ul>
-        <p class="term__f">Plan how to use money and compare planned spending with actual spending.</p>
-      </div>
-
-      <div class="term rise" data-d="4">
-        <div class="term__rule">
-          <span class="term__n">module 4</span><h3 class="term__t">Saving, Growth &amp; Purchasing Power</h3><span class="term__dash"></span><span class="term__r">3 lessons</span>
-        </div>
-        <ul class="modules">
-          <li class="module"><span class="module__n">4.1</span> Saving for Goals</li>
-          <li class="module"><span class="module__n">4.2</span> Money Can Grow: An Introduction to Investment</li>
-          <li class="module"><span class="module__n">4.3</span> Money Can Shrink: Inflation and Purchasing Power</li>
-        </ul>
-        <p class="term__f">Set savings goals and explore how money&rsquo;s value can change over time.</p>
-      </div>
-
-      <div class="term rise" data-d="4">
-        <div class="term__rule">
-          <span class="term__n">module 5</span><h3 class="term__t">Financial Services, Borrowing &amp; Investing</h3><span class="term__dash"></span><span class="term__r">3 lessons</span>
-        </div>
-        <ul class="modules">
-          <li class="module"><span class="module__n">5.1</span> Banks and Accounts</li>
-          <li class="module"><span class="module__n">5.2</span> Borrowing and Debt</li>
-          <li class="module"><span class="module__n">5.3</span> Introduction to Investing</li>
-        </ul>
-        <p class="term__f">Understand basic financial services, the responsibilities of borrowing, and the relationship between investment risk and return.</p>
-      </div>
-
-      <div class="term rise" data-d="5">
-        <div class="term__rule">
-          <span class="term__n">module 6</span><h3 class="term__t">Financial Safety &amp; Future Readiness</h3><span class="term__dash"></span><span class="term__r">3 lessons</span>
-        </div>
-        <ul class="modules">
-          <li class="module"><span class="module__n">6.1</span> Protecting Your Money Online</li>
-          <li class="module"><span class="module__n">6.2</span> Scams, Consumer Protection &amp; Getting Help</li>
-          <li class="module"><span class="module__n">6.3</span> My Money Plan</li>
-        </ul>
-        <p class="term__f">Practise safe financial habits, recognise warning signs, and bring learning together in a personal plan.</p>
-      </div>
-
-      <p class="prog__note rise" data-d="5">Ask us for the full scheme of work, including learning outcomes, assessment points, and the lesson pack for any lesson you want to see first.</p>
     </div>
   </section>
 
@@ -676,32 +759,32 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
   <section class="takes" id="takes" data-reveal>
     <div class="shell">
       <p class="takes__k rise">In your school</p>
-      <h2 class="rise" data-d="1">What it really takes to run it</h2>
+      <h2 class="rise" data-d="1">What it takes</h2>
 
       <div class="facts">
-        <div class="fact pennant slide" data-d="1">
-          <p class="fact__l"><b>01</b> Timetable</p>
+        <div class="fact pennant slide" data-d="2">
+          <p class="fact__l">Timetable</p>
           <p class="fact__x">One period a week, or a block in advisory or life skills. Schools also run it as an after school club. We will map the 16 lessons to whatever slot you have.</p>
         </div>
-        <div class="fact pennant slide" data-d="2">
-          <p class="fact__l"><b>02</b> Cost to the school</p>
+        <div class="fact pennant slide">
+          <p class="fact__l">Cost to the school</p>
           <p class="fact__x">None this academic year. The programme is funded by our banking partner, so schools in the first cohort run it without a licence fee.</p>
         </div>
         <!-- NOTE: the source repeats the "Cost to the school" copy here. Line below is a draft — replace it. -->
-        <div class="fact pennant slide" data-d="3">
-          <p class="fact__l"><b>03</b> Teacher load</p>
+        <div class="fact pennant slide">
+          <p class="fact__l">Teacher load</p>
           <p class="fact__x">Light. Lessons run and mark themselves inside the platform. The teacher opens the session, runs one short discussion, and checks the class dashboard. No finance background needed.</p>
         </div>
-        <div class="fact pennant slide" data-d="4">
-          <p class="fact__l"><b>04</b> Data and safeguarding</p>
+        <div class="fact pennant slide">
+          <p class="fact__l">Data and safeguarding</p>
           <p class="fact__x">We operate under Egypt&rsquo;s Personal Data Protection Law 151 of 2020. Yabi is the data controller, Edulga the processor. No student opens an account without written parent consent, and no student data is sold.</p>
         </div>
-        <div class="fact pennant slide" data-d="5">
-          <p class="fact__l"><b>05</b> Platform</p>
+        <div class="fact pennant slide">
+          <p class="fact__l">Platform</p>
           <p class="fact__x">Students work in a Yabi Junior space built with our partner Edulga. It adapts pace and difficulty to each student, gives them an AI learning companion, and shows teachers progress at a glance.</p>
         </div>
-        <div class="fact pennant slide" data-d="6">
-          <p class="fact__l"><b>06</b> Getting started</p>
+        <div class="fact pennant slide">
+          <p class="fact__l">Getting started</p>
           <p class="fact__x">A 30 minute call, then a walkthrough for your leadership team. Schools joining for the 2026&thinsp;/&thinsp;27 year usually go from first call to first lesson in three to four weeks.</p>
         </div>
       </div>
@@ -719,7 +802,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
        </div>
       </div>
 
-      <div class="panel rise" data-d="2" id="panel">
+      <div class="panel rise" data-d="3" id="panel">
         <div class="form-body">
           <p class="errsum" id="errsum" role="alert" tabindex="-1"></p>
           <div class="g2">
@@ -738,7 +821,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
             <div class="field" id="f-role">
               <label for="role">Your role <span class="req">*</span></label>
               <select id="role" required aria-required="true" aria-describedby="e-role">
-                <option value="">SELECT A ROLE</option>
+                <option value="">Select a role</option>
                 <option>Principal or head of school</option><option>Deputy head</option>
                 <option>Head of department</option><option>Teacher</option>
                 <option>Counsellor or life skills lead</option><option>Operations or admin</option>
@@ -760,7 +843,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
             <div class="field" id="f-city">
               <label for="city">City <span class="req">*</span></label>
               <select id="city" required aria-required="true" aria-describedby="e-city">
-                <option value="">SELECT A CITY</option>
+                <option value="">Select a city</option>
                 <option>Cairo</option><option>New Cairo</option><option>Giza</option>
                 <option>6th of October</option><option>Sheikh Zayed</option>
                 <option>Alexandria</option><option>Other</option>
@@ -780,12 +863,12 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
           <div class="g2">
             <div class="field">
               <label for="count">Students in those grades</label>
-              <input id="count" type="text" placeholder="APPROXIMATE IS FINE" inputmode="numeric">
+              <input id="count" type="text" placeholder="Approximate is fine" inputmode="numeric">
             </div>
             <div class="field">
               <label for="start">When you would want to start</label>
               <select id="start">
-                <option value="">SELECT A TERM</option>
+                <option value="">Select a term</option>
                 <option>Term 1, 2026 / 27</option><option>Term 2, 2026 / 27</option>
                 <option>Term 3, 2026 / 27</option><option>Still deciding</option>
               </select>
@@ -834,9 +917,12 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
         if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('[data-reveal]').forEach(function (s) { io.observe(s); });
+    document.querySelectorAll('.hero[data-reveal]').forEach(function (s) { io.observe(s); });
+    document.querySelectorAll('.rise,.slide,.pop').forEach(function (el) {
+      if (!el.closest('.hero')) io.observe(el);
+    });
   } else {
-    document.querySelectorAll('[data-reveal]').forEach(function (s) { s.classList.add('is-in'); });
+    document.querySelectorAll('[data-reveal],.rise,.slide,.pop').forEach(function (s) { s.classList.add('is-in'); });
   }
 
   /* ---- sticky bar state ---- */
@@ -847,6 +933,17 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
     bar.classList.toggle('is-past', past);
   };
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* the form is the call request, so the bar's button steps aside once it is on screen
+     (and stays hidden in the footer below it) */
+  var talk = document.getElementById('talk');
+  if (talk && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        bar.classList.toggle('is-form', e.isIntersecting || e.boundingClientRect.top < 0);
+      });
+    }, { rootMargin: '0px 0px -40% 0px' }).observe(talk);
+  }
 
   /* ---- grade chips ---- */
   document.querySelectorAll('.chip').forEach(function (c) {
@@ -916,6 +1013,156 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
   });
 
   function val(id) { return document.getElementById(id).value.trim(); }
+
+  /* ---- bring a video to the middle of the screen, with an eased scroll ---- */
+  var rootEl = document.documentElement, centring = 0;
+  function jumpTo(y) {                       /* instant, regardless of CSS scroll-behavior */
+    var prev = rootEl.style.scrollBehavior;
+    rootEl.style.scrollBehavior = 'auto';
+    window.scrollTo(0, y);
+    rootEl.style.scrollBehavior = prev;
+  }
+  function centreOnScreen(el) {
+    if (!el) return;
+    var from = window.pageYOffset;
+    /* ask the browser where "centred" is, then put the page back */
+    var prev = rootEl.style.scrollBehavior;
+    rootEl.style.scrollBehavior = 'auto';
+    try { el.scrollIntoView({ block: 'center', inline: 'nearest' }); } catch (e) { el.scrollIntoView(); }
+    var to = window.pageYOffset;
+    window.scrollTo(0, from);
+    rootEl.style.scrollBehavior = prev;
+    if (reduce || Math.abs(to - from) < 2) { jumpTo(to); return; }
+    var run = ++centring, t0 = null, stopped = false;
+    var dur = Math.min(950, Math.max(500, Math.abs(to - from) * 0.9));
+    var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+    var stop = function () { stopped = true; };
+    window.addEventListener('wheel', stop, { once: true, passive: true });
+    window.addEventListener('touchmove', stop, { once: true, passive: true });
+    requestAnimationFrame(function step(ts) {
+      if (stopped || run !== centring) return;   /* visitor scrolled, or a newer centring began */
+      if (t0 === null) t0 = ts;
+      var k = Math.min(1, (ts - t0) / dur);
+      jumpTo(from + (to - from) * ease(k));
+      if (k < 1) requestAnimationFrame(step);
+    });
+  }
+
+  /* ---- videos: Instagram-style play button, always start with sound, centre on play ---- */
+  /* onPlay replaces the default "scroll it to the centre" behaviour when given */
+  function setupPlayer(videoId, buttonId, onPlay) {
+    var v = document.getElementById(videoId), b = document.getElementById(buttonId);
+    if (!v || !b) return;
+    var focus = onPlay || centreOnScreen;
+    v.muted = false; v.defaultMuted = false; v.volume = 1;
+    v.removeAttribute('controls');               /* native controls come back once it plays */
+    b.hidden = false;
+    b.addEventListener('click', function () {
+      v.muted = false; v.volume = 1;             /* sound on; viewers mute it themselves */
+      v.controls = true;
+      focus(v);
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { b.hidden = false; });
+    });
+    v.addEventListener('play', function () {
+      b.hidden = true; v.controls = true;
+      if (v.muted) v.muted = false;               /* never start silent */
+      focus(v);
+      /* only one video plays at a time */
+      document.querySelectorAll('video').forEach(function (o) { if (o !== v && !o.paused) o.pause(); });
+    });
+    v.addEventListener('ended', function () { b.hidden = false; });
+    /* pause once the video is mostly scrolled off screen (up or down) */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.intersectionRatio < 0.25 && !v.paused) v.pause(); });
+      }, { threshold: [0, 0.25] }).observe(v);
+    }
+  }
+  /* ---- video lightbox (CEO message and demo) ----
+     Play lifts the video out of its card into the middle of the screen over a
+     dimmed page. It goes back into the card when it ends, when the dimmed area
+     (or ×, or Esc) is clicked. Closing does NOT pause: it keeps playing in the
+     card until the viewer pauses it. The page never scrolls, so they land
+     exactly where they were. ratio is the video's width / height. */
+  function makeBox(videoId, mediaSel, ratio) {
+    var v = document.getElementById(videoId);
+    if (!v) return null;
+    var media = v.closest(mediaSel);
+    if (!media) return null;
+    var ph = document.createElement('div');       /* holds the card's shape while the video is out */
+    var dim = document.createElement('div'); dim.className = 'vbox-dim';
+    var x = document.createElement('button'); x.className = 'vbox-x'; x.type = 'button';
+    x.setAttribute('aria-label', 'Close the enlarged video'); x.innerHTML = '&times;';
+    document.body.appendChild(dim); document.body.appendChild(x);
+    var isOpen = false, busy = null, dur = reduce ? 0 : 480;
+    var ease = 'cubic-bezier(.2,.8,.3,1)';
+
+    function target() {
+      var h = Math.min(vh() * 0.86, vw() * 0.92 / ratio);
+      var w = h * ratio;
+      return { w: w, l: (vw() - w) / 2, t: (vh() - h) / 2 };
+    }
+    /* body has CSS zoom (.8), so fixed left/top/width are in zoomed px:
+       measure the viewport and rects in those units too */
+    function z() { return parseFloat(getComputedStyle(document.body).zoom) || 1; }
+    function vw() { return window.innerWidth / z(); }
+    function vh() { return window.innerHeight / z(); }
+    function css(r, el) {                         /* rect -> body CSS px, whichever way the engine reports it */
+      var k = el.offsetWidth ? r.width / el.offsetWidth : 1;
+      return { left: r.left / k, top: r.top / k, width: r.width / k, height: r.height / k };
+    }
+    function place() {
+      var t = target();
+      media.style.width = t.w + 'px'; media.style.left = t.l + 'px'; media.style.top = t.t + 'px';
+    }
+    /* position/size keyframes rather than a scale transform: WebKit paints a
+       scaled <video> layer in the wrong place once the transform ends */
+    function at(r) { return { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px' }; }
+    function centre() { var t = target(); return { left: t.l + 'px', top: t.t + 'px', width: t.w + 'px' }; }
+    function open() {
+      if (isOpen) return;
+      isOpen = true;
+      if (busy) { busy.cancel(); busy = null; }   /* reopened mid-close: it is still boxed */
+      var r = css(media.getBoundingClientRect(), media);
+      if (!media.classList.contains('is-boxed')) {
+        ph.style.height = r.height + 'px';
+        media.parentNode.insertBefore(ph, media);
+        document.body.appendChild(media);         /* same task, so playback is not interrupted */
+        media.classList.add('is-boxed');
+      }
+      place();
+      dim.classList.add('on');
+      document.documentElement.style.overflow = 'hidden';
+      if (dur) media.animate([at(r), centre()], { duration: dur, easing: ease });
+    }
+    function close() {
+      if (!isOpen) return;
+      isOpen = false;
+      dim.classList.remove('on');
+      document.documentElement.style.overflow = '';
+      var done = function () {
+        media.classList.remove('is-boxed');
+        media.style.width = media.style.left = media.style.top = '';
+        ph.parentNode.insertBefore(media, ph); ph.remove();
+      };
+      if (!dur) return done();
+      var anim = media.animate([centre(), at(css(ph.getBoundingClientRect(), ph))],
+                               { duration: dur * 0.85, easing: ease, fill: 'forwards' });
+      busy = anim;
+      anim.onfinish = function () { busy = null; done(); anim.cancel(); };
+    }
+    dim.addEventListener('click', close);
+    x.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    window.addEventListener('resize', function () { if (isOpen) place(); });
+    v.addEventListener('ended', close);
+    return { open: open };
+  }
+  var demoBox = makeBox('demo-video', '.demo__media', 16 / 9);
+  setupPlayer('demo-video', 'demo-play', demoBox ? function () { demoBox.open(); } : null);
+  var ceoBox = makeBox('ceo-video', '.igcard__media', 9 / 16);
+  setupPlayer('ceo-video', 'ceo-play', ceoBox ? function () { ceoBox.open(); } : null);
 
   /* ============================================================
      WHERE ENQUIRIES GO
