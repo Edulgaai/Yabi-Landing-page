@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yabi-junior.vercel.app/sitemap.xml
