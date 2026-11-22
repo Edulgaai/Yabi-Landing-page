@@ -318,6 +318,31 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
 .demo__media a{color:#fff}
 
 /* ============================================================
+   TRY A LESSON — the real lesson player, Lesson 4 open, the rest locked
+   ============================================================ */
+.try{background:#fff;padding:82px 0}
+.try__k{font-family:var(--f-body);font-size:19px;color:var(--purple);margin:0 0 6px}
+.try h2{font-family:var(--f-hand);font-weight:400;font-size:clamp(2.2rem,5.8vw,3.9rem);color:var(--green-head);line-height:1;margin:0 0 14px}
+.try__lede{font-family:var(--f-body);font-size:var(--copy);font-weight:var(--copy-w);color:var(--purple-deep);max-width:34em;margin:0 0 30px}
+.try__frame{position:relative;background:var(--purple-deep);padding:10px;box-shadow:0 0 0 3px var(--green-deep)}
+.try__bar{display:flex;align-items:center;gap:14px;padding:4px 8px 12px;color:#fff;font-family:var(--f-body);font-size:16px}
+.try__bar b{font-family:var(--f-hand);font-weight:400;font-size:19px;letter-spacing:.02em;color:var(--green)}
+.try__bar span{opacity:.82}
+.try__bar a{margin-left:auto;color:#fff;font-weight:500;text-underline-offset:3px}
+.try__bar a:hover{color:var(--green)}
+.try__frame iframe{display:block;width:100%;height:clamp(600px,96vh,900px);border:0;background:#fbf8f3}
+.try__foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin:26px 0 0}
+.try__foot p{margin:0;font-family:var(--f-body);font-size:19px;font-weight:500;color:var(--purple-deep)}
+/* phones: a lesson inside a scrolling page is fiddly, so open it full screen instead */
+.try__open{display:none}
+@media (max-width:700px){
+  .try{padding:56px 0}
+  .try__frame iframe,.try__bar{display:none}
+  .try__open{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:26px 20px;color:#fff;font-family:var(--f-body);font-size:18px}
+  .try__open b{font-family:var(--f-hand);font-weight:400;font-size:26px;color:var(--green);line-height:1.1}
+}
+
+/* ============================================================
    PROGRAMME
    ============================================================ */
 .prog{background:#f8faf7;padding:88px 0 76px;position:relative;overflow:hidden}
@@ -661,6 +686,7 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
     <a class="wordmark" href="#top" aria-label="Yabi Junior, back to top"><svg aria-hidden="true"><use href="#yabi-logo"/></svg></a>
     <ul class="navlinks">
       <li><a href="#demo">Demo</a></li>
+      <li><a href="#try">Try it</a></li>
       <li><a href="#programme">Roadmap</a></li>
       <li><a href="#ceo">Why?</a></li>
       <li><a href="#takes">Run it</a></li>
@@ -723,6 +749,31 @@ p{margin:0 0 1em} p:last-child{margin-bottom:0}
           <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7.5,4.8 19.5,12 7.5,19.2"/></svg>
         </button>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRY A LESSON ================= -->
+  <!-- demo-lesson.html is the real lesson player: Lesson 4 is open, the other 15 are listed but locked. -->
+  <section class="try" id="try" data-reveal>
+    <div class="shell">
+      <p class="try__k rise">Try it yourself</p>
+      <h2 class="rise" data-d="1">Play a real lesson</h2>
+      <p class="try__lede rise" data-d="2">This is Spending Smart, exactly as students get it. Pick a gift, set your price, see what your money is really worth.</p>
+      <div class="try__frame rise" data-d="3">
+        <div class="try__bar">
+          <b>Lesson 4</b> <span>Spending Smart &middot; about 10 minutes</span>
+          <a href="demo-lesson.html" target="_blank" rel="noopener">Open full screen</a>
+        </div>
+        <iframe src="demo-lesson.html" title="Yabi Junior demo lesson: Spending Smart" loading="lazy"></iframe>
+        <div class="try__open">
+          <b>Lesson 4: Spending Smart</b>
+          <span>About 10 minutes. Opens full screen.</span>
+          <a class="btn btn--green" href="demo-lesson.html">Play the lesson <svg class="ic" aria-hidden="true"><use href="#ic-arrow"/></svg></a>
+        </div>
+      </div>
+      <div class="try__foot rise" data-d="4">
+        <p>The other 15 lessons unlock for partner schools.</p>
       </div>
     </div>
   </section>
